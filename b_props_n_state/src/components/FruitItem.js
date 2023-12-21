@@ -1,12 +1,7 @@
-import FruitItem from './FruitItem';
-
-export default function Fruits() {
+export default function FruitItem(props) {
   return (
-    <>
-      <h1>과일 목록</h1>
-      <FruitItem name='apple' amount={3} />
-      <FruitItem name='banana' amount={5} />
-      <FruitItem name='peach' amount={2} />
-    </>
+    <div>
+      {props.name} {props.amount}개
+    </div>
   );
 }

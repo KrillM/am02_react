@@ -1,10 +1,9 @@
 import './App.css';
+import Pr01 from './components/Pr01';
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <Pr01 />
   );
 }
 
