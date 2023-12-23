@@ -1,4 +1,3 @@
-import './App.css';
 // import Hello from './components/Hello';
 // import Hi from './components/Hi';
 // import Pr01 from './components/Pr01';

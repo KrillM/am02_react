@@ -1,4 +1,3 @@
-import './App.css';
 import Greeting from './components/Pr01';
 
 function App() {
