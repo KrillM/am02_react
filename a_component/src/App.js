@@ -1,14 +1,13 @@
-// import Hello from './components/Hello';
-// import Hi from './components/Hi';
-// import Pr01 from './components/Pr01';
-import Pr02 from './components/Pr04';
+import Ex01Hello from "./components/Ex01Hello";
+import Ex02Class from "./components/Ex02Class";
+import Practice from "./components/Pr03Login"
 
 function App() {
   return (<>
-    {/* <Hello />
-    <Hi />
-    <Pr01 /> */}
-    <Pr02 />
+    {/* <Ex01Hello />
+    <Ex02Class /> */}
+    {/* <Practice name={"몽이"} animal={"푸들"}/> */}
+    <Practice />
   </>
   );
 }
