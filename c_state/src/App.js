@@ -1,4 +1,4 @@
-import Greeting from './components/Pr01';
+import Greeting from './components/Pr02';
 
 function App() {
   return (<>
