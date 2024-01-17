@@ -1,8 +1,8 @@
-import Pr01 from './components/Pr01';
+import Practice from './components/Pr03B';
 
 function App() {
   return (
-    <Pr01 />
+    <Practice />
   );
 }
 
