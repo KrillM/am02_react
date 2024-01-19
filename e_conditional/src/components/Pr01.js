@@ -2,28 +2,28 @@ import { useState } from 'react';
 import Button from './Button';
 
 export default function Pr01(){
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isLogin, setIsLogin] = useState(false);
 
-    const renderButton = () => {
-        if(isLoggedIn){
+    const settingToggleLogin = () => {
+        setIsLogin(!isLogin);
+    }
+
+    const renderLogin = () => {
+        if(isLogin){
             return (<>
-                <h1>Welcome Back!</h1>
-                <Button type='Logout' onClick={handleToggleClick} />
+                <h1>Please sign up.</h1>
+                <Button onClick={settingToggleLogin} type='Login'/>
             </>)
         }
         else {
-            return (<>
-                <h1>Please sign up.</h1>
-                <Button type='Login' onClick={handleToggleClick} />
+            return  (<>
+                <h1>Welcome Back!</h1>
+                <Button onClick={settingToggleLogin} type='Logout'/>
             </>)
         }
     }
 
-    const handleToggleClick = () => {
-        setIsLoggedIn(!isLoggedIn);
-    }
-
     return(<>
-        {renderButton()}
+        {renderLogin()}
     </>)
 }
