@@ -1,149 +1,96 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-export default function Comment() {
-    const [inputs, setInputs] = useState({
-        writer: '',
-        content: '',
-        search: '',
-    });
-    const { writer, content, search } = inputs;
-    const [comment, setComment] = useState([
-        {
-            id: 1,
-            content: '처음에 사랑이란게',
-            writer: '지수',
-        }, {
-            id: 2,
-            content: '참 쉽게 영원할거라',
-            writer: '수아',
-        }, {
-            id: 3,
-            content: '그렇게 믿었었는데',
-            writer: '크릴',
-        },
-    ]);
-    const [result, setResult] = useState([]);
-    const [searchType, setSearchType] = useState('writer');
+export default function Pr03(){
+    const [list, setList] = useState([
+        {id: 1, writter: "예나", comment: "처음엔 사랑이란 게"},
+        {id: 2, writter: "지수", comment: "참 쉽게 영원할 거라"},
+        {id: 3, writter: "크릴", comment: "그렇게 믿었었는데"},
+    ])
 
-    const onChange = (e) => {
-        const { name, value } = e.target;
-        setInputs({
-            ...inputs,
-            [name]: value,
-        });
-    };
+    const [comment, setComment] = useState('');
+    const [writter, setWritter] = useState('');
 
-    const addComment = () => {
-        if (writer.trim().length === 0) {
-            alert('작성자를 입력해주세요.');
+    const addList = () => {
+        if(comment.trim().length === 0){
+            alert("내용을 입력하세요.");
             return;
-        } else if (content.trim().length === 0) {
-            alert('댓글 내용을 입력해주세요.');
+        } else if(writter.trim().length === 0){
+            alert("작성자를 입력하세요.");
             return;
         }
 
-        const newComment = {
-            id: comment.length + 1,
-            content,
-            writer,
-        };
-
-        setComment([...comment, newComment]);
-            setInputs({
-            ...inputs,
-            content: '',
-            writer: '',
-        });
-    };
-
-    const selectSearchType = (e) => {
-        setSearchType(e.target.value);
-    };
-
-    const searchComment = () => {
-        const searchResult = comment.filter((item) => {
-            if (!item[searchType].includes(search)) {
-                return null;
-            }
-            return item;
+        const updateList = list.concat({
+            id: list.length + 1,
+            comment: comment,
+            writter: writter
         });
 
-        setResult(searchResult);
-            setInputs({
-            ...inputs,
-            search: '',
-        });
-    };
+        setComment('');
+        setWritter('');
+        setList(updateList);
+    }
 
-  return (
-    <>
-        <form>
-            <label htmlFor='content2'>댓글:</label>
-            <input id='content2' type='text'name='content' value={content} onChange={onChange} />
-            <label htmlFor='wirter2'>작성자:</label>
-            <input id='wirter2' type='text' name='writer' value={writer} onChange={onChange}/>
-            <button type='button' onClick={addComment}>작성</button>
-        </form>
+    const [searchType, setSearchType] = useState('comment');
+    const [search, setSearch] = useState('');
+    const [searchResult, setSearchResult] = useState([]);
 
-        <form>
-            <select name='type' onChange={selectSearchType}>
-                <option value='content'>댓글</option>
-                <option value='writer'>작성자</option>
-            </select>
+    const searchKeyWord = (keyword) => {
+        const finding = list.filter((item) => item[searchType].toLowerCase().includes(keyword.toLowerCase()));
+        setSearchResult(finding);
+    }
 
-            <input type='text' name='search' placeholder='검색어' value={search} onChange={onChange}/>
-            <button type='button' onClick={searchComment}>검색</button>
-        </form>
+    return(<>
+        내용: <input type="text" value={comment} onChange={(e)=>{setComment(e.target.value)}}></input>
+        작성자: <input type="text" value={writter} onChange={(e)=>{setWritter(e.target.value)}}></input>
+        <button type="button" onClick={addList}>ADD</button>
+        <br/>
 
-        <h3>전체 댓글 목록</h3>
-        <table border={1}>
+        <select onChange={(e) => {setSearchType(e.target.value)}}>
+            <option value="comment">내용</option>
+            <option value="writter">작성자</option>
+        </select>
+        <input type="text" value={search} onChange={(e)=>{setSearch(e.target.value)}}></input>
+        <button type="button" onClick={()=>searchKeyWord(search)}>검색</button>
+
+        <h2>전체 댓글 목록</h2>
+        <table border="bold">
             <thead>
-            <tr>
-                <th>번호</th>
-                <th>댓글</th>
-                <th>작성자</th>
-            </tr>
+                <tr>
+                    <th>번호</th>
+                    <th>댓글</th>
+                    <th>작성자</th>
+                </tr>
             </thead>
             <tbody>
-            {comment.map((value) => {
-                return (
-                <tr key={value.id}>
-                    <td>{value.id}</td>
-                    <td>{value.content}</td>
-                    <td>{value.writer}</td>
-                </tr>
-                );
-            })}
+                {list.map((value) => (
+                    <tr  key={value.id}>
+                        <td>{value.id}</td>
+                        <td>{value.comment}</td>
+                        <td>{value.writter}</td>
+                    </tr>
+                ))}
             </tbody>
         </table>
-
-        <h3>댓글 검색 결과</h3>
-        {result.length > 0 ? (
-            <div>
-                <table border={1}>
-                    <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>댓글</th>
-                            <th>작성자</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {result.map((value) => {
-                        return (
+        <h2>댓글 검색 결과</h2>
+        {searchResult && 
+            <table border="bold">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>댓글</th>
+                        <th>작성자</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {searchResult.map((value) => (
                         <tr key={value.id}>
                             <td>{value.id}</td>
-                            <td>{value.content}</td>
-                            <td>{value.writer}</td>
+                            <td>{value.comment}</td>
+                            <td>{value.writter}</td>
                         </tr>
-                        );
-                    })}
-                    </tbody>
-                </table>
-            </div>
-        ) : (
-            <h5>검색 결과가 없습니다.</h5>
-        )}
-    </>
-  );
+                    ))}
+                </tbody>
+            </table>
+        }
+    </>)
 }

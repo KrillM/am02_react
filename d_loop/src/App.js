@@ -1,5 +1,5 @@
 import './App.css';
-import Map from './components/Pr02';
+import Map from './components/Pr03';
 
 function App() {
   return (<>
