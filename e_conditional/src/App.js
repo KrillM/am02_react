@@ -1,5 +1,5 @@
 import './App.css';
-import Pr01 from './components/Pr01';
+import Pr01 from './components/Pr04';
 
 function App() {
   return (<>
