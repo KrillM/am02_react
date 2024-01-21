@@ -1,5 +1,5 @@
 import './App.css';
-import SyntheticEventAttr from './components/Pr01';
+import SyntheticEventAttr from './components/Pr02';
 
 function App() {
   return (<>

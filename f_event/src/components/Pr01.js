@@ -1,24 +1,22 @@
 import { useState } from 'react';
 
-export default function ChangeColor() {
-  const [str, setStr] = useState('검정색 글씨');
-  const [style, setStyle] = useState({ color: 'black' });
+export default function Pr01(){
+    const [title, setTitle] = useState('검정색');
+    const [style, setStyle] = useState('black');
 
-  const handleColorRed = () => {
-    setStr('빨간색 글씨');
-    setStyle({ color: 'red' });
-  };
+    const changeStyle = (newColor) => {
+        setStyle(newColor);
 
-  const handleColorBlue = () => {
-    setStr('파란색 글씨');
-    setStyle({ color: 'blue' });
-  };
+        if(newColor === 'red'){
+            setTitle('빨간색')
+        } else if(newColor === 'blue'){
+            setTitle('파란색')
+        } 
+    }
 
-  return (
-    <>
-      <h1 style={style}>{str}</h1>
-      <button onClick={handleColorRed}>빨간색</button>
-      <button onClick={handleColorBlue}>파란색</button>
-    </>
-  );
+    return(<>
+        <h1 style={{color: style}}>{title} 글자</h1>
+        <button onClick={() => {changeStyle('red')}}>빨간색</button>
+        <button onClick={() => {changeStyle('blue')}}>파란색</button>
+    </>)
 }
