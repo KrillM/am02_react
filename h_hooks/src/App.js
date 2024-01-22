@@ -1,5 +1,5 @@
 import './App.css';
-import Files from './components/Pr02'
+import Files from './components/Ex03_useReducer'
 
 function App() {
   return (<>
